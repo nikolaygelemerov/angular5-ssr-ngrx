@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './modules/auth/components/authentication/authentication.component';
 import { MessageComponent } from './modules/message/components/message.component';
-
+import { HttpService } from './modules/shared/services/http/http.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,9 +16,10 @@ import { MessageComponent } from './modules/message/components/message.component
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'server-side-rendering'}),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

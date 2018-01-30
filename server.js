@@ -18,7 +18,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist');
 
-// Our index.html we'll use as our template
+// Our index.ejs we'll use as our template
 const template = readFileSync(join(DIST_FOLDER, 'browser', 'index.html')).toString();
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
@@ -28,7 +28,7 @@ const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader')
 
 app.engine('html', (_, options, callback) => {
     renderModuleFactory(AppServerModuleNgFactory, {
-        // Our index.html
+        // Our index.ejs
         document: template,
         url: options.req.url,
         // DI so that we can get lazy-loading to work differently (since we need it to just instantly render it)
